@@ -79,6 +79,7 @@ onRemovePet = (petId) => {
         </section>
         <section className="new-pet-form-wrapper">
           { /* Wave 3:  Where NewPetForm should appear */ }
+          <NewPetForm />
         </section>
       </main>
     );
