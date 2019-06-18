@@ -9,7 +9,7 @@ const PetList = (props) => {
   const listOfPets = props.pets.map((pet, i) => {
 
     return (
-      <li>
+      // <li>
       <PetCard
         key={i}
         id={pet.id}
@@ -17,8 +17,9 @@ const PetList = (props) => {
         species={pet.species}
         about={pet.about}
         location={pet.location}
-        selectPetCallback={props.onSelectPet} />
-        </li>
+        selectPetCallback={props.onSelectPet}
+        removePetCallback={props.onRemovePet} />
+        // </li>
     );
   });
 

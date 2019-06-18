@@ -20,6 +20,8 @@ class App extends Component {
     };
   }
 
+// console.log(`Page loaded. Pets: ${pets}`);
+
 onSelectPet = (petId) => {
   const selectedPet = this.state.petList.find(pet => {
     return pet.id === petId
@@ -27,7 +29,25 @@ onSelectPet = (petId) => {
   this.setState ({
     currentPet: selectedPet,
   })
+}
 
+onRemovePet = (petId) => {
+  // const petToRemove = this.state.petList.find(pet => {
+  //   return pet.id === petId;
+  // });
+
+  // const removePetIndex = this.state.petList.findIndex(pet => {return pet.id === petId})
+  // console.log(`The index to remove is: ${removePetIndex}`);
+  // const tempPetList = this.pets.splice(removePetIndex);
+
+  const tempPetList = this.state.petList.filter(pet => pet.id !== petId)
+  console.log(tempPetList);
+
+
+
+  this.setState ({
+    petList: tempPetList
+  })
 }
 
 
@@ -35,7 +55,7 @@ onSelectPet = (petId) => {
 
   render() {
     const { currentPet } = this.state;
-    const details = currentPet ? <PetDetails currentPet={this.state.currentPet} /> : "no pet selected";
+    const details = currentPet ? <PetDetails currentPet={this.state.currentPet} /> : "";
     return (
       <main className="App">
         <header className="app-header">
@@ -52,7 +72,10 @@ onSelectPet = (petId) => {
 
         <section className="pet-list-wrapper">
           { /* Wave 1:  Where PetList should appear */ }
-          <PetList pets={pets} onSelectPet={this.onSelectPet}/>
+          <PetList
+            pets={this.state.petList}
+            onSelectPet={this.onSelectPet}
+            onRemovePet={this.onRemovePet}/>
         </section>
         <section className="new-pet-form-wrapper">
           { /* Wave 3:  Where NewPetForm should appear */ }
